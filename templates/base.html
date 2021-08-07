@@ -1,0 +1,41 @@
+{% extends './bootstrap.html' %}
+
+{% load bootstrap5 %}
+
+{% load customtags %}
+
+{% block bootstrap5_before_content %}
+<div>
+    <h3 class="float-md-start mb-0">Django-React</h3>
+    <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link {% active '' %}" href="{% url 'home' %}">Home</a>
+        {% if user.is_authenticated %}
+            <a class="nav-link {% active 'logout' %}" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a class="nav-link {% active 'register' %}" href="{% url 'register' %}">Register</a>
+            <a class="nav-link {% active 'login' %}" href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
+</div>
+{% endblock %}
+
+{% block bootstrap5_content %}
+<h1>{% block bootstrap5_title %}(no title){% endblock %}</h1>
+<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+<p class="lead">
+<a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+</p>
+<div class="container">
+    <h1></h1>
+
+    <p>
+        <a href="{% url 'home' %}">home</a>
+    </p>
+
+    {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+</div>
+{% endblock %}
+    
+{% block bootstrap5_after_content %}
+<p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+{% endblock %}

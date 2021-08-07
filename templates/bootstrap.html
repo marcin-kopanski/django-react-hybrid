@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% if 'use_i18n'|bootstrap_setting %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+{% endif %}
+<html lang="{{ LANGUAGE_CODE|default:'en_us' }}" class="h-100">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Page title -->
+    <title>{% block bootstrap5_title %}django-bootstrap-v5 template title{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    {% bootstrap_css %}
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+
+    <!-- Bootstrap JavaScript if it is in head -->
+    {% if 'javascript_in_head'|bootstrap_setting %}
+        {% bootstrap_javascript %}
+    {% endif %}
+
+    {% block bootstrap5_extra_head %}{% endblock %}
+
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            {% block bootstrap5_before_content %}{% endblock %}
+        </header>
+        <main class="px-3">
+            {% block bootstrap5_content %} CONTENT {% endblock %}
+        </main>
+        <footer class="mt-auto text-white-50">
+            {% block bootstrap5_after_content %}{% endblock %}
+        </footer>
+    </div>
+
+    <!-- Bootstrap JavaScript if it is in body -->
+    {% if not 'javascript_in_head'|bootstrap_setting %}
+        {% bootstrap_javascript %}
+    {% endif %}
+
+    {% block bootstrap5_extra_script %}{% endblock %}
+</body>
+
+</html>

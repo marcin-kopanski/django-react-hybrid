@@ -1,0 +1,17 @@
+{% extends '../base.html' %}
+
+{% load bootstrap5 %}
+
+{% block bootstrap5_content %}
+
+<h3>{% block bootstrap5_title %}Register{% endblock %}</h3>
+
+{% bootstrap_messages %}
+
+<form action="" method="POST" class="text-start">
+    {% csrf_token %}
+    {% bootstrap_form form show_help=False %}
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+{% endblock %}
